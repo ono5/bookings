@@ -3,13 +3,12 @@ package render
 import (
 	"bytes"
 	"fmt"
+	"github.com/tsawler/bookings-app/pkg/config"
+	"github.com/tsawler/bookings-app/pkg/models"
 	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
-
-	"bookings/pkg/config"
-	"bookings/pkg/models"
 )
 
 var functions = template.FuncMap{}
@@ -21,13 +20,15 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func AddDefauultData(td *models.TemplateData) *models.TemplateData {
+func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+
 	return td
 }
 
-// RenderTemplate renders templates using html/template
+// RenderTemplate renders a template
 func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
 	var tc map[string]*template.Template
+
 	if app.UseCache {
 		// get the template cache from the app config
 		tc = app.TemplateCache
@@ -41,17 +42,21 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 	}
 
 	buf := new(bytes.Buffer)
-	td = AddDefauultData(td)
+
+	td = AddDefaultData(td)
+
 	_ = t.Execute(buf, td)
 
 	_, err := buf.WriteTo(w)
 	if err != nil {
-		fmt.Println("Error writing template to browser", err)
+		fmt.Println("error writing template to browser", err)
 	}
+
 }
 
 // CreateTemplateCache creates a template cache as a map
 func CreateTemplateCache() (map[string]*template.Template, error) {
+
 	myCache := map[string]*template.Template{}
 
 	pages, err := filepath.Glob("./templates/*.page.tmpl")
@@ -80,5 +85,6 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 		myCache[name] = ts
 	}
+
 	return myCache, nil
 }
