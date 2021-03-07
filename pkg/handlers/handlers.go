@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"github.com/tsawler/bookings-app/pkg/config"
-	"github.com/tsawler/bookings-app/pkg/models"
-	"github.com/tsawler/bookings-app/pkg/render"
+	"bookings/pkg/config"
+	"bookings/pkg/models"
+	"bookings/pkg/render"
 	"net/http"
 )
 

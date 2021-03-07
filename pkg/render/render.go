@@ -1,10 +1,10 @@
 package render
 
 import (
+	"bookings/pkg/config"
+	"bookings/pkg/models"
 	"bytes"
 	"fmt"
-	"github.com/tsawler/bookings-app/pkg/config"
-	"github.com/tsawler/bookings-app/pkg/models"
 	"html/template"
 	"log"
 	"net/http"

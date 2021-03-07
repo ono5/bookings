@@ -1,11 +1,12 @@
 package main
 
 import (
+	"bookings/pkg/config"
+	"bookings/pkg/handlers"
+	"net/http"
+
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/tsawler/bookings-app/pkg/config"
-	"github.com/tsawler/bookings-app/pkg/handlers"
-	"net/http"
 )
 
 func routes(app *config.AppConfig) http.Handler {
