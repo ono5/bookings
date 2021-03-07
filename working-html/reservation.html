@@ -61,7 +61,27 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h1>This will be the reservation page</h1>
+                <h1 class="mt-5">Search for Availabliry</h1>
+
+                <form action="reservation.html" method="get">
+                    <div class="form-group">
+                        <label for="start_date">Starting Date</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date"
+                            aria-describedby="startDateHelp">
+                        <small id="startDateHelp" class="form-text text-muted">Enter your starting date in the form of
+                            YYYY/MM/DD</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_date">Ending Date</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date"
+                            aria-describedby="endDateHelp">
+                        <small id="endDateHelp" class="form-text text-muted">Enter your ending date in the form of
+                            YYYY/MM/DD</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
     </div>
