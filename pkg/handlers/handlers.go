@@ -35,7 +35,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	remoteIP := r.RemoteAddr
 	m.App.Session.Put(r.Context(), "remote_ip", remoteIP)
 
-	render.RenderTemplate(w, r, "home.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "home.page.go.tmpl", &models.TemplateData{})
 }
 
 // About is the handler for the about page
@@ -48,29 +48,29 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	stringMap["remote_ip"] = remoteIP
 
 	// send data to the template
-	render.RenderTemplate(w, r, "about.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "about.page.go.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
 
 // Reservation renders the make a reservation page and displays form
 func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "make-reservation.page.go.tmpl", &models.TemplateData{})
 }
 
 // Generals renders the room page
 func (m *Repository) Generals(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "generals.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "generals.page.go.tmpl", &models.TemplateData{})
 }
 
 // Majors renders the room page
 func (m *Repository) Majors(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "majors.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "majors.page.go.tmpl", &models.TemplateData{})
 }
 
 // Availability renders the search availability page
 func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "search-availability.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "search-availability.page.go.tmpl", &models.TemplateData{})
 }
 
 // PostAvailability renders the search availability page
@@ -97,12 +97,11 @@ func (m *Repository) PostAvailabilityJSON(w http.ResponseWriter, r *http.Request
 		log.Println(err)
 	}
 
-	log.Println(string(out))
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(out)
 }
 
 // Contact renders the contact page
 func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "contact.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "contact.page.go.tmpl", &models.TemplateData{})
 }
