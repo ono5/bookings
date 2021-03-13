@@ -1,14 +1,15 @@
 package render
 
 import (
-	"bookings/internal/config"
-	"bookings/internal/models"
 	"bytes"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
+
+	"bookings/internal/config"
+	"bookings/internal/models"
 
 	"github.com/justinas/nosurf"
 )
@@ -22,6 +23,7 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
+// AddDefaultData adds data for all templates
 func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
 	td.CSRFToken = nosurf.Token(r)
 	return td
@@ -61,7 +63,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 	myCache := map[string]*template.Template{}
 
-	pages, err := filepath.Glob("./templates/*.page.go.tmpl")
+	pages, err := filepath.Glob("./templates/*.page.tmpl")
 	if err != nil {
 		return myCache, err
 	}
@@ -73,13 +75,13 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 			return myCache, err
 		}
 
-		matches, err := filepath.Glob("./templates/*.layout.go.tmpl")
+		matches, err := filepath.Glob("./templates/*.layout.tmpl")
 		if err != nil {
 			return myCache, err
 		}
 
 		if len(matches) > 0 {
-			ts, err = ts.ParseGlob("./templates/*.layout.go.tmpl")
+			ts, err = ts.ParseGlob("./templates/*.layout.tmpl")
 			if err != nil {
 				return myCache, err
 			}

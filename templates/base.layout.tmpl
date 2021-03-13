@@ -224,13 +224,13 @@
                     focusConfirm: false,
                     showCancelButton: true,
                     willOpen: () => {
-                        if (c.willOpen != undefined) {
-                            c.willOpen()
+                        if (c.willOpen !== undefined) {
+                            c.willOpen();
                         }
                     },
                     didOpen: () => {
-                        if (c.didOpen != undefined) {
-                            c.didOpen()
+                        if (c.didOpen !== undefined){
+                            c.didOpen();
                         }
                     },
                     preConfirm: () => {
